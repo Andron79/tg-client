@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+ tg_client:
+    container_name: tg_client
+    build:
+      context: .
+    restart: always
+    environment:
+      PYTHONPATH: "${PYTHONPATH}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      DB_HOST: "${DB_HOST}"
+      DB_PORT: "${DB_PORT}"
+#      SECRET: "${SECRET}"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/usr/src/app
+#    depends_on:
+#      - db
+#    networks:
+#      - api_bridge
+#
+#  db:
+#    container_name: db
+#    image: library/postgres:12.5
+#    restart: always
+#    environment:
+#      POSTGRES_USER: "${DB_USER}"
+#      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+#      POSTGRES_DB: "${DB_NAME}"
+#    ports:
+#      - 5432:5432
+#    networks:
+#      - client_bridge
+#
+#networks:
+#    api_bridge:
+#        driver: bridge
